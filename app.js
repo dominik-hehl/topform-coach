@@ -540,6 +540,26 @@ function renderToday() {
 
   const recommendation =
     getRecommendation();
+    
+  const recentActivities = [
+  ...state.workouts.map((workout) => ({
+    ...workout,
+    activityType: "workout"
+  })),
+
+  ...state.footballSessions.map((session) => ({
+    ...session,
+    title:
+      session.type === "Spiel"
+        ? "Fußballspiel"
+        : "Fußballtraining",
+    activityType: "football"
+  }))
+]
+  .sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  })
+  .slice(0, 8);
 
   const today = new Date();
 
@@ -1052,13 +1072,7 @@ function renderTraining() {
           ? `
             <div class="list">
 
-              ${state.workouts
-                .slice()
-                .sort((a, b) => {
-                return new Date(b.date) - new Date(a.date);
-                })
-                .slice(0, 8)
-                .map(
+              ${recentActivities.map(
                   (workout) => `
                     <div class="list-item">
 
@@ -1073,14 +1087,19 @@ function renderTraining() {
                         </strong>
 
                         <span>
-                          ${formatDate(
-                            new Date(workout.date)
-                          )}
-                          ·
-                          ${workout.duration} Min.
-                          ·
-                          RPE ${workout.rpe}
-                        </span>
+  ${formatDate(
+    new Date(workout.date)
+  )}
+  ·
+  ${workout.duration} Min.
+  ·
+  RPE ${workout.rpe}
+  ${
+    workout.pain > 0
+      ? ` · Schmerz ${workout.pain}/10`
+      : ""
+  }
+</span>
 
                       </div>
 
