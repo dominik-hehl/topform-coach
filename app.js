@@ -540,26 +540,6 @@ function renderToday() {
 
   const recommendation =
     getRecommendation();
-    
-  const recentActivities = [
-  ...state.workouts.map((workout) => ({
-    ...workout,
-    activityType: "workout"
-  })),
-
-  ...state.footballSessions.map((session) => ({
-    ...session,
-    title:
-      session.type === "Spiel"
-        ? "Fußballspiel"
-        : "Fußballtraining",
-    activityType: "football"
-  }))
-]
-  .sort((a, b) => {
-    return new Date(b.date) - new Date(a.date);
-  })
-  .slice(0, 8);
 
   const today = new Date();
 
@@ -1001,7 +981,26 @@ function openReadinessModal() {
 function renderTraining() {
   const recommendation =
     getRecommendation();
+  const recentActivities = [
+  ...state.workouts.map((workout) => ({
+    ...workout,
+    activityType: "workout"
+  })),
 
+  ...state.footballSessions.map((session) => ({
+    ...session,
+    title:
+      session.type === "Spiel"
+        ? "Fußballspiel"
+        : "Fußballtraining",
+    activityType: "football"
+  }))
+]
+  .sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  })
+  .slice(0, 8);
+  
   $("#main-content").innerHTML = `
     <section class="section">
 
@@ -1068,7 +1067,7 @@ function renderTraining() {
       </h2>
 
       ${
-        state.workouts.length
+        recentActivities.length
           ? `
             <div class="list">
 
