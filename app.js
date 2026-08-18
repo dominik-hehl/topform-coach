@@ -781,6 +781,21 @@ function renderToday() {
   `;
 }
 
+function getWeeklyTrainingCount() {
+  const weekStart = new Date();
+  weekStart.setHours(0, 0, 0, 0);
+
+  const day = weekStart.getDay();
+  const difference = day === 0 ? 6 : day - 1;
+
+  weekStart.setDate(
+    weekStart.getDate() - difference
+  );
+
+  return state.workouts.filter((workout) => {
+    return new Date(workout.date) >= weekStart;
+  }).length;
+}
 
 function getReadinessHeadline(score) {
   if (score >= 85) return "Bereit für Leistung";
