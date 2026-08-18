@@ -1,13 +1,153 @@
-topform-coach/
-│
-├── index.html
-├── styles.css
-├── app.js
-├── data/
-│   ├── exercises.js
-│   └── workouts.js
-│
-├── manifest.json
-├── service-worker.js
-├── icon.svg
-└── README.md
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0B0D10"
+  >
+
+  <meta
+    name="description"
+    content="Topform Coach – dein persönlicher Performance Coach für Fitness, Athletik, Fußball und Ernährung."
+  >
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  >
+  <meta
+    name="apple-mobile-web-app-title"
+    content="Topform Coach"
+  >
+
+  <title>Topform Coach</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="app">
+
+    <!-- Header -->
+    <header class="topbar">
+
+      <div class="brand">
+        <div class="brand-mark">T</div>
+
+        <div class="brand-text">
+          <strong>TOPFORM</strong>
+          <span>COACH</span>
+        </div>
+      </div>
+
+      <button
+        class="icon-button"
+        id="profile-button"
+        type="button"
+        aria-label="Profil"
+      >
+        ⚙
+      </button>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main
+      id="main-content"
+      class="main-content"
+    >
+      <!-- Wird durch JavaScript gefüllt -->
+    </main>
+
+
+    <!-- Mobile Navigation -->
+    <nav
+      class="bottom-nav"
+      aria-label="Hauptnavigation"
+    >
+
+      <button
+        class="nav-item active"
+        data-route="today"
+        type="button"
+      >
+        <span class="nav-icon">◉</span>
+        <span>Heute</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-route="training"
+        type="button"
+      >
+        <span class="nav-icon">▣</span>
+        <span>Training</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-route="week"
+        type="button"
+      >
+        <span class="nav-icon">▤</span>
+        <span>Woche</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-route="progress"
+        type="button"
+      >
+        <span class="nav-icon">↗</span>
+        <span>Fortschritt</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-route="nutrition"
+        type="button"
+      >
+        <span class="nav-icon">◌</span>
+        <span>Ernährung</span>
+      </button>
+
+    </nav>
+
+  </div>
+
+
+  <!-- Modal Container -->
+  <div id="modal-root"></div>
+
+
+  <!-- Toast Notifications -->
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <!-- Application -->
+  <script
+    src="app.js"
+    defer
+  ></script>
+
+</body>
+</html>
