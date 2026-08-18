@@ -1054,7 +1054,9 @@ function renderTraining() {
 
               ${state.workouts
                 .slice()
-                .reverse()
+                .sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+                })
                 .slice(0, 8)
                 .map(
                   (workout) => `
