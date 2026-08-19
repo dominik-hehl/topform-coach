@@ -1,0 +1,19 @@
+{
+  "name": "Topform Coach",
+  "short_name": "Topform",
+  "description": "Dein persönlicher Performance Coach für Kraft, Athletik, Fußball und Ernährung.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "lang": "de-DE",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
