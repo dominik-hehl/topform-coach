@@ -148,6 +148,29 @@
     src="app.js"
     defer
   ></script>
+  
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then((registration) => {
+          console.log(
+            "Topform Service Worker aktiv:",
+            registration.scope
+          );
+
+          registration.update();
+        })
+        .catch((error) => {
+          console.error(
+            "Topform Service Worker Fehler:",
+            error
+          );
+        });
+    });
+  }
+</script>
 
 </body>
 </html>
